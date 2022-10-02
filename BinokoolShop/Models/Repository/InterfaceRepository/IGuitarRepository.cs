@@ -5,7 +5,8 @@ namespace BinokoolShop.Models.Repository.InterfaceRepository
     public interface IGuitarRepository
     {
         IQueryable<Guitar> GetGuitars();
-        Guitar GetGuitar(Guid Id);
+        Guitar GetGuitarById(Guid Id);
+        Guitar GetGuitarByName(string Name);
         void AddMoreGuitar();
     }
 }

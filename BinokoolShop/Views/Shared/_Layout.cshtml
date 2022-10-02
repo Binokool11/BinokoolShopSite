@@ -9,10 +9,23 @@
 </head>
 <body class="bg-success bg-gradient">
     @await Html.PartialAsync("../PartialHtml/Header.cshtml");
-    <div class="container mt-5">
+    <div class="container mt-5" id="container">
         @RenderBody()
     </div>
     @await Html.PartialAsync("../PartialHtml/Footer.cshtml");
     <script src="~/js/bootstrap.min.js"></script>
+    <script>
+        let container = document.querySelector("#container");
+        container.addEventListener("click", basket);
+        function basket(e){
+            let nameItemText = e.target.parentNode.parentNode.firstElementChild.textContent;
+            if(e.target.tagName == "BUTTON"){
+                fetch("Home/AddItemInBaskent", {
+                    method:"POST",
+                    body:JSON.stringify(nameItemText)
+                });
+            }
+        }
+    </script>
 </body>
 </html>

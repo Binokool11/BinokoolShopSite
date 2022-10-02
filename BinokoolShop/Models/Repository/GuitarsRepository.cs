@@ -11,9 +11,21 @@ namespace BinokoolShop.Models.Repository
         {
             context = _context;
         }
-        public Guitar GetGuitar(Guid Id)
+        public Guitar GetGuitarById(Guid Id)
         {
             Guitar? guitar = context.guitars.FirstOrDefault(c => c.Id == Id);
+            if (guitar != null)
+            {
+                return guitar;
+            }
+            else
+            {
+                throw new ArgumentNullException("В базе данных нету такого товара или не правильно введенный id товара");
+            }
+        }
+        public Guitar GetGuitarByName(string Name) 
+        { 
+            Guitar? guitar = context.guitars.FirstOrDefault(c => c.Name == Name);
             if (guitar != null)
             {
                 return guitar;

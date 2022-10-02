@@ -1,13 +1,11 @@
-﻿@model IQueryable<Guitar>;
+﻿@model List<Guitar>
+
 @foreach (var item in Model)
- {
+{
     <div class="col-lg-4">
         <h3>@item.Name</h3>
         <img class="img-thumbnail" src="@item.Img" alt="@item.Name"/>
         <h4>@item.ShortText</h4>
         <p>Цена: @item.Price.ToString("c")</p>
-        <p><button id="addItem" class="btn btn-warning">Добавить в корзину</button></p>
-        <p><a class="btn btn-warning" href="#">Подробнее</a></p>
     </div>
- }
-
+}

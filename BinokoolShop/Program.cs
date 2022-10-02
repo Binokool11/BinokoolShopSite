@@ -10,7 +10,6 @@ builder.Services.AddControllersWithViews();
 
 //Add repository
 builder.Services.AddTransient<IGuitarRepository, GuitarsRepository>();
-
 //Add DB context
 string connection = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlServer(connection));
