@@ -6,5 +6,6 @@ namespace BinokoolShop.Models.Repository.InterfaceRepository
     {
         IQueryable<Guitar> GetGuitars();
         Guitar GetGuitar(Guid Id);
+        void AddMoreGuitar();
     }
 }

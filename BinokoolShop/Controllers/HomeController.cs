@@ -11,7 +11,6 @@ namespace BinokoolShop.Controllers
         }
         public IActionResult Main()
         {
-
             return View(guitar.GetGuitars());
         }
     }
