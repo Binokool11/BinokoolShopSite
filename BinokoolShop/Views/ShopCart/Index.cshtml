@@ -1,0 +1,23 @@
+﻿@model BinokoolShop.Views.ShopCart.ShopCartIndexViewModel
+@{
+}
+
+<div>
+    <h2>Ваша корзина</h2>
+    <table>
+        <thead>
+            <tr>
+                <td>Название</td>
+                <td>Количество</td>
+            </tr>
+        </thead>
+        @foreach (var item in Model.shopCart.ShopCartItems)
+        {
+            <tr>
+                <td>@item.Guitar.Name</td>
+                <td>@item.Quantity</td>
+            </tr>
+        }
+    </table>
+    <a href="/Home/Main" class="btn btn-warning">Продолжить покупку</a>
+</div>

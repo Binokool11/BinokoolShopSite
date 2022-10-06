@@ -3,11 +3,15 @@
 @foreach (var item in Model)
  {
     <div class="col-lg-4">
-        <img class="img-thumbnail" src="@item.Img" alt="@item.Name"/>
-        <h3>@item.Name</h3>
-        <h4>@item.ShortText</h4>
-        <p>Цена: @item.Price.ToString("c")</p>
-        <p><a class="btn btn-warning" href="#">Подробнее</a></p>
+        <form action="@ViewBag.ShoppingCartAddToCart"  method="POST">
+            <img class="img-thumbnail" src="@item.Img" alt="@item.Name"/>
+            <h3>@item.Name</h3>
+            <h4>@item.ShortText</h4>
+            <p>Цена: @item.Price.ToString("c")</p>
+            <input id="itemId" name="itemId" type="hidden" value="@item.ItemId" />
+            <input type="submit" class="btn btn-warning" value="Добавить в корзину"/><br>
+            <p><a class="btn btn-warning" href="#">Подробнее</a></p>
+        </form>
     </div>
  }
 

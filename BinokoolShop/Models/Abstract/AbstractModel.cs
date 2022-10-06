@@ -20,6 +20,7 @@ namespace BinokoolShop.Models.Abstract
         public virtual int Count { get; set; } = 0;
         [Display(Name = "Картинка")]
         public virtual string Img { get; set; } = "";
+        public virtual string Category { get; set; } = "";
 
 
     }

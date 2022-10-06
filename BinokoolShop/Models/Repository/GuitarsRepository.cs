@@ -28,56 +28,56 @@ namespace BinokoolShop.Models.Repository
             return context.guitars;
         }
 
-        public void AddMoreGuitar()
+        public void SetGuitar()
         {
-            context.guitars.Add(
-                new Guitar
-                {
-                    Id = Guid.NewGuid(),
-                    Price = 100.0M,
-                    ShortText = "Гитара для начинающих",
-                    LongText = "Посредственная гитара",
-                    Name = "Cort",
-                    IsAvaible = true,
-                    Count = 10,
-                    Img = "~/img/Cort.jpg"
-                });
-            context.guitars.Add(
-                new Guitar
-                {
-                    Id = Guid.NewGuid(),
-                    Price = 1800.0M,
-                    ShortText = "Гитара из массива",
-                    LongText = "Суперская гитара из массива кедра",
-                    Name = "Crafter",
-                    IsAvaible = true,
-                    Count = 20,
-                    Img = "~/img/Crafter.jpg"
-                });
-            context.guitars.Add(
-                new Guitar
-                {
-                    Id = Guid.NewGuid(),
-                    Price = 5100.0M,
-                    ShortText = "Электрогитара от известной компании",
-                    LongText = "Электроитара Gibson, котороя идеально подойдет для жёстких металюг",
-                    Name = "Gibson",
-                    IsAvaible = true,
-                    Count = 5,
-                    Img = "~/img/Gibson_Sg.jpg"
-                });
-            context.guitars.Add(
-                new Guitar
-                {
-                    Id = Guid.NewGuid(),
-                    Price = 99.9M,
-                    ShortText = "Электрогитара от известной компании",
-                    LongText = "Электроитара Gibson, котороя идеально подойдет для жёстких металюг",
-                    Name = "Gibson",
-                    IsAvaible = true,
-                    Count = 10,
-                    Img = "~/img/Gibson_BG.jpg"
-                });
+            context.guitars.Add(new Guitar
+            {
+                Id = Guid.NewGuid(),
+                Price = 100.0M,
+                ShortText = "Гитара для начинающих",
+                LongText = "Посредственная гитара",
+                Name = "Cort",
+                IsAvaible = true,
+                Count = 10,
+                Img = "/img/Cort.jpg",
+                ItemId = 1
+            });
+            context.guitars.Add(new Guitar
+            {
+                Id = Guid.NewGuid(),
+                Price = 1800.0M,
+                ShortText = "Гитара из массива",
+                LongText = "Суперская гитара из массива кедра",
+                Name = "Crafter",
+                IsAvaible = true,
+                Count = 20,
+                Img = "/img/Crafter.jpg",
+                ItemId = 2
+            });
+            context.guitars.Add(new Guitar
+            {
+                Id = Guid.NewGuid(),
+                Price = 5100.0M,
+                ShortText = "Электрогитара от известной компании",
+                LongText = "Электроитара Gibson, котороя идеально подойдет для жёстких металюг",
+                Name = "Gibson",
+                IsAvaible = true,
+                Count = 5,
+                Img = "/img/Gibson_Sg.jpg",
+                ItemId = 3
+            });
+            context.guitars.Add(new Guitar
+            {
+                Id = Guid.NewGuid(),
+                Price = 1400.0M,
+                ShortText = "Электрогитара от известной компании",
+                LongText = "Электроитара Gibson, котороя идеально подойдет для жёстких металюг",
+                Name = "Gibson",
+                IsAvaible = true,
+                Count = 10,
+                Img = "/img/Gibson_BG.jpg",
+                ItemId = 4
+            });
             context.SaveChanges();
         }
     }

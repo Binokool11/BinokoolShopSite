@@ -8,6 +8,7 @@ namespace BinokoolShop.Models
         [Required]
         [Display(Name = "Название гитары")]
         public override string Name { get; set; } = "";
+        public int ItemId { get; set; }
         [Required]
         [Display(Name ="Короткое описание гитары")]
         public override string ShortText { get; set; } = "";

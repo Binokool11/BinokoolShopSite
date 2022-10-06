@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BinokoolShop.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221002091937__initial")]
-    partial class _initial
+    [Migration("20221005100511__second")]
+    partial class _second
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,6 +23,31 @@ namespace BinokoolShop.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("BinokoolShop.Models.Entity.ShopCartItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<Guid>("GuitarId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ShopCartId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GuitarId");
+
+                    b.ToTable("shops");
+                });
 
             modelBuilder.Entity("BinokoolShop.Models.Guitar", b =>
                 {
@@ -39,6 +64,9 @@ namespace BinokoolShop.Migrations
 
                     b.Property<bool>("IsAvaible")
                         .HasColumnType("bit");
+
+                    b.Property<int>("ItemId")
+                        .HasColumnType("int");
 
                     b.Property<string>("LongText")
                         .IsRequired()
@@ -58,19 +86,17 @@ namespace BinokoolShop.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("guitars");
+                });
 
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("75db221d-d327-45a8-9107-c56984b8b710"),
-                            Count = 10,
-                            Img = "~/img/Gibson.jpg",
-                            IsAvaible = true,
-                            LongText = "Очень крутая гитара",
-                            Name = "Gibson",
-                            Price = 99.9m,
-                            ShortText = "Крутая гитара"
-                        });
+            modelBuilder.Entity("BinokoolShop.Models.Entity.ShopCartItem", b =>
+                {
+                    b.HasOne("BinokoolShop.Models.Guitar", "Guitar")
+                        .WithMany()
+                        .HasForeignKey("GuitarId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Guitar");
                 });
 #pragma warning restore 612, 618
         }
