@@ -1,4 +1,4 @@
-﻿@model BinokoolShop.Views.ShopCart.ShopCartIndexViewModel
+﻿@model ShopCartIndexViewModel
 @{
     decimal totalPrice = 0;
 }
@@ -15,7 +15,7 @@
         </thead>
         @foreach (var item in Model.shopCart.ShopCartItems)
         {
-            totalPrice += item.Guitar.Price;
+            totalPrice += item.Guitar.Price * item.Quantity;
             <tr>
                 <td>@item.Guitar.Name</td>
                 <td>@item.Quantity</td>

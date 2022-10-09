@@ -17,14 +17,14 @@ namespace BinokoolShop.Views.ShopCart
             shop = _shop;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(Guitar guitar)
         {
             var shopCartItems = shop.GetShopCartItems();
-            shop.ShopCartItems = shopCartItems;
+            shop.SetCartList(shopCartItems);
 
             var model = new ShopCartIndexViewModel
             {
-                shopCart = shop
+                shopCart = shop,
             };
 
             return View(model);
@@ -33,11 +33,28 @@ namespace BinokoolShop.Views.ShopCart
         public IActionResult AddToCart(int itemId)
         {
             var currentGuitar = guitars.GetGuitars().FirstOrDefault(c => c.ItemId == itemId);
+            var shopCartItems = shop.GetShopCartItems();
+            shop.SetCartList(shopCartItems);
             if (currentGuitar != null)
             {
-                shop.AddToCart(currentGuitar, 1);
+                if (shop.ShopCartItems == null)
+                {
+                    shop.AddToCart(currentGuitar, 1);
+                }
+                else
+                {
+                    ShopCartItem? cart = shop.ShopCartItems.FirstOrDefault(cart => cart.Guitar.Id == currentGuitar.Id);
+                    if (cart == null)
+                    {
+                        shop.AddToCart(currentGuitar, 1);
+                    }
+                    else
+                    {
+                        shop.IncreaseGuitar(currentGuitar);
+                    }
+                }
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", currentGuitar);
         }
 
 

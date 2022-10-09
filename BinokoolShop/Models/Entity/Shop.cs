@@ -23,12 +23,24 @@ namespace BinokoolShop.Models.Entity
 
             return new Shop(context) { ShopCartId = shopCartId};
         }
-        //Добавить логику повторного добавления
-        public void AddToCart(Guitar guitar, int quantity)
+
+        public void SetCartList(List<ShopCartItem> shopCartItems)
         {
-            dbContext.shops.Add(new ShopCartItem { ShopCartId = ShopCartId,  Guitar = guitar, Quantity = quantity});
+            ShopCartItems = shopCartItems;
+        }
+        public void IncreaseGuitar(Guitar guitar)
+        {
+            ShopCartItem? cart = ShopCartItems.FirstOrDefault(cart => cart.Guitar.Id == guitar.Id);
+            cart.Quantity++;
             dbContext.SaveChanges();
         }
+
+        public void AddToCart(Guitar guitar, int quantity)
+        {
+            dbContext.shops.Add(new ShopCartItem { ShopCartId = ShopCartId, Guitar = guitar, Quantity = quantity });
+            dbContext.SaveChanges();
+        }
+
 
         public List<ShopCartItem> GetShopCartItems()
         {

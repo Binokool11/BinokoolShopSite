@@ -1,15 +1,16 @@
-﻿@model IQueryable<Guitar>;
+﻿@model IQueryable<Guitar>
+
 @foreach (var item in Model)
  {
-    <div class="col-lg-4">
+    <div class="col-lg-4 mb-3">
         <form action="@ViewBag.ShoppingCartAddToCart"  method="POST">
             <img class="img-thumbnail" src="@item.Img" alt="@item.Name"/>
             <h3>@item.Name</h3>
             <h4>@item.ShortText</h4>
             <p>Цена: @item.Price.ToString("c")</p>
             <input id="itemId" name="itemId" type="hidden" value="@item.ItemId" />
-            <input type="submit" class="btn btn-warning" value="Добавить в корзину"/><br>
-            <p><a class="btn btn-warning" href="#">Подробнее</a></p>
+            <input type="submit" class="btn btn-warning " value="Добавить в корзину" />
+            <a class="btn btn-warning" href="#">Подробнее</a>
         </form>
     </div>
  }

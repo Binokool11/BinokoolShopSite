@@ -8,11 +8,11 @@
     <link type="image/x-icon" href="/img/favicon.ico" rel="icon"/>
 </head>
 <body class="bg-secondary">
-    @await Html.PartialAsync("../PartialHtml/Header.cshtml");
+    @await Html.PartialAsync("../PartialHtml/Header.cshtml")
     <div class="container mt-5">
         @RenderBody()
     </div>
-    @await Html.PartialAsync("../PartialHtml/Footer.cshtml");
+    @await Html.PartialAsync("../PartialHtml/Footer.cshtml")
     <script src="~/js/bootstrap.min.js"></script>
 </body>
 </html>
