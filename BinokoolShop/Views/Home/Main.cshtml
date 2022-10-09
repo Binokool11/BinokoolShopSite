@@ -1,5 +1,7 @@
 ﻿@model IQueryable<Guitar>;
+
 <h1>Все гитары</h1>
+@await Html.PartialAsync("../PartialHtml/CategoryForm.cshtml");
 <div class="row mt-5 mb-2">
-    @await Html.PartialAsync("../PartialHtml/OutputProducts.cshtml", Model)
+    @await Html.PartialAsync("../PartialHtml/OutputGuitars.cshtml", Model)
 </div>

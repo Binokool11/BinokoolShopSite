@@ -11,6 +11,7 @@ builder.Services.AddControllersWithViews();
 
 //Add repository
 builder.Services.AddTransient<IGuitarRepository, GuitarsRepository>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped(sp => Shop.GetCart(sp));
 //Add DB context

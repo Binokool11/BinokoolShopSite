@@ -5,10 +5,23 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BinokoolShop.Migrations
 {
-    public partial class _second : Migration
+    public partial class _initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "categories",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CategoryName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_categories", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "guitars",
                 columns: table => new
@@ -18,6 +31,7 @@ namespace BinokoolShop.Migrations
                     ItemId = table.Column<int>(type: "int", nullable: false),
                     ShortText = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LongText = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CategoryId = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     IsAvaible = table.Column<bool>(type: "bit", nullable: false),
                     Count = table.Column<int>(type: "int", nullable: false),
@@ -26,6 +40,12 @@ namespace BinokoolShop.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_guitars", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_guitars_categories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "categories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -50,6 +70,11 @@ namespace BinokoolShop.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_guitars_CategoryId",
+                table: "guitars",
+                column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_shops_GuitarId",
                 table: "shops",
                 column: "GuitarId");
@@ -62,6 +87,9 @@ namespace BinokoolShop.Migrations
 
             migrationBuilder.DropTable(
                 name: "guitars");
+
+            migrationBuilder.DropTable(
+                name: "categories");
         }
     }
 }

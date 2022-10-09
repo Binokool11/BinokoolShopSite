@@ -40,7 +40,8 @@ namespace BinokoolShop.Models.Repository
                 IsAvaible = true,
                 Count = 10,
                 Img = "/img/Cort.jpg",
-                ItemId = 1
+                ItemId = 1,
+                Category = context.categories.FirstOrDefault(c => c.CategoryName == "Акустическая гитара")
             });
             context.guitars.Add(new Guitar
             {
@@ -52,7 +53,8 @@ namespace BinokoolShop.Models.Repository
                 IsAvaible = true,
                 Count = 20,
                 Img = "/img/Crafter.jpg",
-                ItemId = 2
+                ItemId = 2,
+                Category = context.categories.FirstOrDefault(c => c.CategoryName == "Акустическая гитара")
             });
             context.guitars.Add(new Guitar
             {
@@ -64,7 +66,8 @@ namespace BinokoolShop.Models.Repository
                 IsAvaible = true,
                 Count = 5,
                 Img = "/img/Gibson_Sg.jpg",
-                ItemId = 3
+                ItemId = 3,
+                Category = context.categories.FirstOrDefault(c => c.CategoryName == "Электрическая гитара")
             });
             context.guitars.Add(new Guitar
             {
@@ -76,7 +79,8 @@ namespace BinokoolShop.Models.Repository
                 IsAvaible = true,
                 Count = 10,
                 Img = "/img/Gibson_BG.jpg",
-                ItemId = 4
+                ItemId = 4,
+                Category = context.categories.FirstOrDefault(c => c.CategoryName == "Электрическая гитара")
             });
             context.SaveChanges();
         }

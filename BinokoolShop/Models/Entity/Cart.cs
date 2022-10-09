@@ -59,10 +59,6 @@
         /// Количество товара
         /// </summary>
         public int Quantity { get; set; }
-        public override string ToString()
-        {
-            return Guitar.Name; 
-        }
     }
 
     

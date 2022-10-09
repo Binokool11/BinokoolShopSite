@@ -1,23 +1,28 @@
 ﻿@model BinokoolShop.Views.ShopCart.ShopCartIndexViewModel
 @{
+    decimal totalPrice = 0;
 }
 
 <div>
     <h2>Ваша корзина</h2>
-    <table>
+    <table class="table table-striped table-dark">
         <thead>
             <tr>
                 <td>Название</td>
                 <td>Количество</td>
+                <td>Цена</td>
             </tr>
         </thead>
         @foreach (var item in Model.shopCart.ShopCartItems)
         {
+            totalPrice += item.Guitar.Price;
             <tr>
                 <td>@item.Guitar.Name</td>
                 <td>@item.Quantity</td>
+                <td>@item.Guitar.Price</td>
             </tr>
         }
     </table>
+    <div class="totalPrice">Итого: @totalPrice</div>
     <a href="/Home/Main" class="btn btn-warning">Продолжить покупку</a>
 </div>
