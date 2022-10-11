@@ -1,19 +1,20 @@
 ﻿using BinokoolShop.Models.AppDbContext;
+using BinokoolShop.Models.Repository.InterfaceRepository;
 using Microsoft.EntityFrameworkCore;
 
 namespace BinokoolShop.Models.Entity
 {
-    public class Shop
+    public class ShopRepository
     {
         public string ShopCartId { get; set; }
         public List<ShopCartItem> ShopCartItems { get; set; }
         private readonly ApplicationDbContext dbContext;
-        public Shop(ApplicationDbContext _context)
+        public ShopRepository(ApplicationDbContext _context)
         {
             dbContext = _context;
         }
 
-        public static Shop GetCart(IServiceProvider services)
+        public static ShopRepository GetCart(IServiceProvider services)
         {
             ISession session = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
             var context = services.GetService<ApplicationDbContext>();
@@ -21,7 +22,7 @@ namespace BinokoolShop.Models.Entity
 
             session.SetString("CartId", shopCartId);
 
-            return new Shop(context) { ShopCartId = shopCartId};
+            return new ShopRepository(context) { ShopCartId = shopCartId};
         }
 
         public void SetCartList(List<ShopCartItem> shopCartItems)

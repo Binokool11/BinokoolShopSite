@@ -10,8 +10,8 @@ namespace BinokoolShop.Views.ShopCart
     public class ShopCartController : Controller
     {
         private readonly IGuitarRepository guitars;
-        private readonly Shop shop;
-        public ShopCartController(IGuitarRepository _guitars, Shop _shop)
+        private readonly ShopRepository shop;
+        public ShopCartController(IGuitarRepository _guitars, ShopRepository _shop)
         {
             guitars=_guitars;
             shop = _shop;
@@ -24,7 +24,7 @@ namespace BinokoolShop.Views.ShopCart
 
             var model = new ShopCartIndexViewModel
             {
-                shopCart = shop,
+                ShopCart = shop,
             };
 
             return View(model);

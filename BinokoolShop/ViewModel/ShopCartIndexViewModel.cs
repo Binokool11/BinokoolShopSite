@@ -4,6 +4,7 @@ namespace BinokoolShop.Views.ShopCart
 {
     public class ShopCartIndexViewModel
     {
-        public Shop shopCart { get; set;  }
+        public ShopRepository ShopCart { get; set;  }
+        public Validation Validation { get; set; } = null;
     }
 }

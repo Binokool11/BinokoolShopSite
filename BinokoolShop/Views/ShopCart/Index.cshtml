@@ -13,7 +13,7 @@
                 <td>Цена</td>
             </tr>
         </thead>
-        @foreach (var item in Model.shopCart.ShopCartItems)
+        @foreach (var item in Model.ShopCart.ShopCartItems)
         {
             totalPrice += item.Guitar.Price * item.Quantity;
             <tr>
@@ -23,6 +23,7 @@
             </tr>
         }
     </table>
-    <div class="totalPrice">Итого: @totalPrice</div>
-    <a href="/Home/Main" class="btn btn-warning">Продолжить покупку</a>
+    <div class="mb-2 bg-warning">Итого: @totalPrice.ToString("c")</div>
+    <p><a href="@ViewBag.OrderingView" class="btn btn-warning">Оформить заказ</a></p>
+    <a href="@ViewBag.Main" class="btn btn-warning">Продолжить покупку</a>
 </div>

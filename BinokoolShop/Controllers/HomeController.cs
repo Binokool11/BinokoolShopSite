@@ -16,6 +16,7 @@ namespace BinokoolShop.Controllers
         }
         public IActionResult Main()
         {
+
             return View(guitars.GetGuitars());
         }
         public IActionResult Category(string category)
@@ -33,12 +34,6 @@ namespace BinokoolShop.Controllers
                 GuitarsViewModel guitarsViewModel = new GuitarsViewModel { guitars = guitarsWithCurrentCategory, Category = category };
                 return View("Category", guitarsViewModel);
             }
-
-
-
-            
         }
-
-
     }
 }

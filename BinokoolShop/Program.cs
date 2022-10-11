@@ -12,8 +12,10 @@ builder.Services.AddControllersWithViews();
 //Add repository
 builder.Services.AddTransient<IGuitarRepository, GuitarsRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddSingleton<Validation>();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-builder.Services.AddScoped(sp => Shop.GetCart(sp));
+builder.Services.AddScoped(sp => ShopRepository.GetCart(sp));
 //Add DB context
 string connection = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlServer(connection));
