@@ -25,13 +25,23 @@ namespace BinokoolShop.Controllers
 
         public IActionResult Ordering()
         {
+            var cartItems = shop.GetShopCartItems();
+            shop.SetCartList(cartItems);
+            if (shop.ShopCartItems.Count == 0)
+            {
+                string message = "Корзина пуста";
+                ErrorPageViewModel errorModel = new ErrorPageViewModel { Message = message };
+                return RedirectToAction("ErrorPage", errorModel);
+            }
             ShopCartIndexViewModel model = new ShopCartIndexViewModel { ShopCart = shop, Validation = validation };
             return View(model);
         }
-        public IActionResult ShowError()
+
+        public IActionResult ErrorPage(ErrorPageViewModel errorModel)
         {
-            return View(validation);
+            return View(errorModel);
         }
+
         public IActionResult CompliteOrder(User user)
         {
             
@@ -55,19 +65,10 @@ namespace BinokoolShop.Controllers
                     validation.ShowError = false;
                     return View();
                 }
-                else
-                {
-                    validation.modelError = ModelState;
-                    validation.ShowError = true;
-                    return RedirectToAction("Ordering");
-                }
             }
-            else
-            {
-                validation.ShowError = true;
-                validation.modelError = ModelState;
-                return RedirectToAction("Ordering");
-            }
+            validation.ShowError = true;
+            validation.modelError = ModelState;
+            return RedirectToAction("Ordering");
             
         }
     }

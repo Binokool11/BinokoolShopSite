@@ -1,10 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.ComponentModel.DataAnnotations;
 
 namespace BinokoolShop.Models.Entity
 {
     public class User
     {
-        
+        [BindNever]
         public int Id { get; set; }
         [Required (ErrorMessage = "Имя не должно быть пустым")]
         public string Name { get; set; }
